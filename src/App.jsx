@@ -14,7 +14,7 @@ export default props => {
           <Typography style={{ fontWeight: "bold" }}>Média Ponderada</Typography>
         </Toolbar>
       </AppBar>
-      <main style={{ flexGrow: 1, height: '100vh', overflow: 'auto' }}>
+      <main style={{ flexGrow: 1, height: '100vh', overflow: 'auto', background:"#eeeeee" }}>
         <div className={classes.appBarSpace} ></div>
         <Container maxWidth="xl" className={classes.container} spacing={3}>
           <MainScreen/>
