@@ -1,14 +1,14 @@
 import React from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import useStyles from '../styles';
-import data from "../data";
+import { connect } from "react-redux";
 
 const MediaCard = (props) => {
 
     const classes = useStyles();
 
-    const colunas = data.medias.colunas
-    const linhas = data.medias.linhas
+    const colunas = props.medias.colunas
+    const linhas = props.medias.linhas
 
     return (
         <Grid item>
@@ -26,7 +26,7 @@ const MediaCard = (props) => {
                             <tr>
                                 <td>{linha.id}</td>
                                 {linha.valores.map((valor, index) => (colunas[index] ? <td>{valor}</td> : null))}
-                                <td>{linha.valores.reduce((soma, valor, index) => (colunas[index] ?  (soma + (valor * colunas[index].peso)) : soma), 0).toFixed(2)}</td>
+                                <td>{linha.valores.reduce((soma, valor, index) => (colunas[index] ? (soma + (valor * colunas[index].peso)) : soma), 0).toFixed(2)}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -36,4 +36,6 @@ const MediaCard = (props) => {
     )
 }
 
-export default MediaCard
+const mapStateToProps = state => ({medias: state.medias})
+
+export default connect(mapStateToProps)(MediaCard)
