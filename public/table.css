@@ -1,0 +1,31 @@
+table.mediaTable {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
+  table.mediaTable td, table.mediaTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.mediaTable tbody td {
+    font-size: 15px;
+  }
+  table.mediaTable tbody tr:hover {
+    background: #D0E4F5;
+  }
+  table.mediaTable thead {
+    background: #FFA218;
+    background: -moz-linear-gradient(top, #ffb952 0%, #ffab2f 66%, #da8300 100%);
+    background: -webkit-linear-gradient(top, #ffb952 0%, #ffab2f 66%, #da8300 100%);
+    background: linear-gradient(to bottom, #ffb952 0%, #ffab2f 66%, #da8300 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.mediaTable thead th {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+  }
+  table.mediaTable tfoot td {
+    font-size: 14px;
+  }

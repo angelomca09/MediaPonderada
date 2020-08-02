@@ -9,7 +9,7 @@ export default props => {
 
   return (
     <div style={{ display: "flex" }}>
-      <AppBar position="absolute">
+      <AppBar position="absolute" className={classes.header}>
         <Toolbar>
           <Typography style={{ fontWeight: "bold" }}>Média Ponderada</Typography>
         </Toolbar>

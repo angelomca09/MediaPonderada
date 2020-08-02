@@ -66,6 +66,13 @@ const useStyles = makeStyles(theme => ({
   },
   textFields: {
     marginBottom: theme.spacing(2)
+  },
+  header:{
+    background:"#e8870e",
+    background: "-moz-linear-gradient(top, #6377e8 0%, #3f51b5 66%, #182c9c 100%)",
+    background: "-webkit-linear-gradient(top, #6377e8 0%, #3f51b5 66%, #182c9c 100%)",
+    background: "linear-gradient(to bottom, #6377e8 0%, #3f51b5 66%, #182c9c 100%)",
+    color:"whitesmoke"
   }
 }))
 
