@@ -29,3 +29,31 @@ table.mediaTable {
   table.mediaTable tfoot td {
     font-size: 14px;
   }
+
+  table.formTable {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
+  table.formTable td, table.formTable th {
+    padding: 10px 10px;
+  }
+  table.formTable tbody td {
+    font-size: 15px;
+  }
+  table.formTable thead {
+    background: #FFA218;
+    background: -moz-linear-gradient(top, #ffb952 0%, #ffab2f 66%, #da8300 100%);
+    background: -webkit-linear-gradient(top, #ffb952 0%, #ffab2f 66%, #da8300 100%);
+    background: linear-gradient(to bottom, #ffb952 0%, #ffab2f 66%, #da8300 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.formTable thead th {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+  }
+  table.formTable tfoot td {
+    font-size: 14px;
+  }

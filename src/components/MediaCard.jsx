@@ -7,8 +7,8 @@ const MediaCard = (props) => {
 
     const classes = useStyles();
 
-    const colunas = props.medias.colunas
-    const linhas = props.medias.linhas
+    const colunas = props.colunas
+    const linhas = props.linhas
 
     return (
         <Grid item>
@@ -36,6 +36,6 @@ const MediaCard = (props) => {
     )
 }
 
-const mapStateToProps = state => ({medias: state.medias})
+const mapStateToProps = state => ({colunas: state.colunas, linhas: state.linhas})
 
 export default connect(mapStateToProps)(MediaCard)
