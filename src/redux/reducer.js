@@ -16,7 +16,15 @@ const INITIAL_STATE = {
 function rootReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case constants.ADD_MEDIA:
-            return Object.assign({}, state, { linhas: state.linhas.concat(action.payload)  });
+            return Object.assign({}, state, { linhas: state.linhas.concat(action.payload) });
+        case constants.DELETE_MEDIA:
+            var linhasCopia = [...state.linhas]
+            linhasCopia.splice(action.payload, 1)
+            return Object.assign({}, state, { linhas: linhasCopia })
+        case constants.EDIT_MEDIA:
+            var linhasCopia = [...state.linhas]
+            linhasCopia[action.payload.id] = action.payload.media
+            return Object.assign({}, state, { linhas: linhasCopia })
     }
     return state;
 }

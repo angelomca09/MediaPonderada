@@ -1,3 +1,5 @@
 export default {
     ADD_MEDIA: "ADD_MEDIA",
+    EDIT_MEDIA: "EDIT_MEDIA",
+    DELETE_MEDIA: "DELETE_MEDIA"
 }
