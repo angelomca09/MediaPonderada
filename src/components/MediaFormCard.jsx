@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Paper, Grid, Input } from '@material-ui/core';
 import useStyles from '../styles';
 import { connect } from "react-redux";
@@ -8,24 +8,34 @@ const MediaCard = (props) => {
 
     const classes = useStyles();
 
+    const media = props.media
     const colunas = props.colunas
 
-    const alteraId = event => props.setMedia({ id: event.target.value, valores: props.media.valores })
+    const preencheValoresDaMedia = () => {
+        var mediaPreenchida = Object.assign({}, media)
+        if (colunas.length > mediaPreenchida.valores.length)
+            mediaPreenchida.valores = colunas.map((coluna, index) => mediaPreenchida.valores[index] ? mediaPreenchida.valores[index] : 0)
+        return mediaPreenchida
+    }
+
+    useEffect(() => {
+        props.setMedia(preencheValoresDaMedia())
+    }, [])
+
+    const alteraId = event => props.setMedia({ id: event.target.value, valores: media.valores })
 
     const alteraValores = (event, index) => {
-        var valoresCopia = [...props.media.valores];
-        valoresCopia[index] = event.target.value;
-        props.setMedia({ id: props.media.id, valores: valoresCopia })
+        var valoresCopia = [...media.valores];
+        valoresCopia[index] = +event.target.value;
+        props.setMedia({ id: media.id, valores: valoresCopia })
     }
 
     const submit = (event) => {
         event.preventDefault();
-        var media = Object.assign({}, props.media)
-        if (props.colunas.length > media.valores.length)
-            media.valores = props.colunas.map((coluna, index) => media.valores[index] ? media.valores[index] : 0)
-        if (Number.isInteger(props.mediaIndex)) props.editMedia(props.mediaIndex, media)
-        else props.addMedia(media)
-        props.setMedia({ id: "", valores: props.colunas.map(() => "") })
+        var mediaPreenchida = preencheValoresDaMedia(media, colunas)
+        if (Number.isInteger(props.mediaIndex)) props.editMedia(props.mediaIndex, mediaPreenchida)
+        else props.addMedia(mediaPreenchida)
+        props.setMedia({ id: "", valores: colunas.map(() => 0) })
         props.setMediaIndex(null)
     }
 
