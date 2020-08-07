@@ -23,7 +23,7 @@ const MediaCard = (props) => {
 
     const deletarClick = (index) => {
         props.setMedia(zerarValoresDaMedia())
-        props.setMediaIndex(index)
+        props.setMediaIndex(null)
         props.deleteMedia(index)
     }
 
