@@ -1,27 +1,32 @@
-import React, { useState, use } from 'react';
+import React from 'react';
 import { Paper, Grid, Input } from '@material-ui/core';
 import useStyles from '../styles';
 import { connect } from "react-redux";
-import { addMedia } from "../redux/actions"
+import { addMedia, editMedia, setMedia, setMediaIndex } from "../redux/actions"
 
 const MediaCard = (props) => {
 
     const classes = useStyles();
 
-
     const colunas = props.colunas
-    const [mediaForm, setMediaForm] = useState(["","",""])
-    const alteraForm = (event, index) => {
-        var mediaFormCopia = [...mediaForm];
-        mediaFormCopia[index] = event.target.value;
-        setMediaForm(mediaFormCopia)
+
+    const alteraId = event => props.setMedia({ id: event.target.value, valores: props.media.valores })
+
+    const alteraValores = (event, index) => {
+        var valoresCopia = [...props.media.valores];
+        valoresCopia[index] = event.target.value;
+        props.setMedia({ id: props.media.id, valores: valoresCopia })
     }
-    const [descricao, setDescricao] = useState("")
 
     const submit = (event) => {
         event.preventDefault();
-        console.log({id: descricao, valores: mediaForm})
-        props.addMedia({id: descricao, valores: mediaForm})
+        var media = Object.assign({}, props.media)
+        if (props.colunas.length > media.valores.length)
+            media.valores = props.colunas.map((coluna, index) => media.valores[index] ? media.valores[index] : 0)
+        if (Number.isInteger(props.mediaIndex)) props.editMedia(props.mediaIndex, media)
+        else props.addMedia(media)
+        props.setMedia({ id: "", valores: props.colunas.map(() => "") })
+        props.setMediaIndex(null)
     }
 
     return (
@@ -33,20 +38,20 @@ const MediaCard = (props) => {
                         <tbody>
                             <tr>
                                 <td>Descrição</td>
-                                <td><Input value={descricao}
-                                    onChange={event => setDescricao(event.target.value)} />
+                                <td><Input value={props.media.id}
+                                    onChange={alteraId} />
                                 </td>
                             </tr>
                             {colunas.map((coluna, index) =>
                                 <tr key={index} title={`Peso: ${coluna.peso}`}>
                                     <td>{coluna.tag}</td>
-                                    <td><Input value={mediaForm[index]}
-                                        onChange={event => alteraForm(event, index)} />
+                                    <td><Input value={props.media.valores[index]}
+                                        onChange={event => alteraValores(event, index)} />
                                     </td>
                                 </tr>)}
                             <tr>
                                 <td></td>
-                                <td><button>Adicionar Media</button></td>
+                                <td><button>{props.mediaIndex ? "Editar Média" : "Adicionar Média"}</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -56,7 +61,17 @@ const MediaCard = (props) => {
     )
 }
 
-const mapStateToProps = state => ({ colunas: state.colunas })
-const mapDispatchToProps = dispatch => ({addMedia: media => dispatch(addMedia(media)) })
+const mapStateToProps = state => ({
+    colunas: state.colunas,
+    media: state.media,
+    mediaIndex: state.mediaIndex
+})
+
+const mapDispatchToProps = dispatch => ({
+    addMedia: media => dispatch(addMedia(media)),
+    editMedia: (id, media) => dispatch(editMedia({ id, media })),
+    setMedia: media => dispatch(setMedia(media)),
+    setMediaIndex: index => dispatch(setMediaIndex(index))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCard)
