@@ -1,5 +1,9 @@
 import constants from "./constants"
 
+export function setMedias(payload) {
+    return { type: constants.SET_MEDIAS, payload }
+}
+
 export function addMedia(payload) {
     return { type: constants.ADD_MEDIA, payload }
 }
@@ -18,4 +22,8 @@ export function setMedia(payload) {
 
 export function setMediaIndex(payload) {
     return { type: constants.SET_EDIT_INDEX, payload }
+}
+
+export function setFormulas(payload) {
+    return { type: constants.SET_FORMULAS, payload }
 }

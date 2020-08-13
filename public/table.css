@@ -6,7 +6,7 @@ table.mediaTable {
   }
   table.mediaTable td, table.mediaTable th {
     border: 1px solid #AAAAAA;
-    padding: 3px 2px;
+    padding: 10px 10px;
   }
   table.mediaTable tbody td {
     font-size: 15px;

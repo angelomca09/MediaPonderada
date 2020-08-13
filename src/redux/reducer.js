@@ -2,14 +2,13 @@ import constants from "./constants"
 
 const INITIAL_STATE = {
     colunas: [
-        { tag: "AV1", peso: 0.5 },
-        { tag: "AV2", peso: 0.3 },
-        { tag: "AV3", peso: 0.2 },
+        { tag: "AC1", peso: 0.1 },
+        { tag: "AC2", peso: 0.3 },
+        { tag: "AG", peso: 0.2 },
+        { tag: "AF", peso: 0.4 }
     ],
     linhas: [
-        { id: "primeiro", valores: [1, 7, 0] },
-        { id: "segundo", valores: [8, 9, 5] },
-        { id: "terceiro", valores: [2, 10, 0] },
+        { id: "Exemplo", valores: [5, 5, 5, 5] }
     ],
     media: { id: "", valores: [] },
     mediaIndex: null
@@ -18,6 +17,8 @@ const INITIAL_STATE = {
 function rootReducer(state = INITIAL_STATE, action) {
     var linhasCopia
     switch (action.type) {
+        case constants.SET_MEDIAS:
+            return Object.assign({}, state, { linhas: action.payload })
         case constants.ADD_MEDIA:
             return Object.assign({}, state, { linhas: state.linhas.concat(action.payload) });
         case constants.DELETE_MEDIA:
@@ -32,6 +33,8 @@ function rootReducer(state = INITIAL_STATE, action) {
             return Object.assign({}, state, { media: action.payload })
         case constants.SET_EDIT_INDEX:
             return Object.assign({}, state, { mediaIndex: action.payload })
+        case constants.SET_FORMULAS:
+            return Object.assign({}, state, { colunas: action.payload })
         default:
             return state;
     }
