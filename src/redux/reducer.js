@@ -11,7 +11,8 @@ const INITIAL_STATE = {
         { id: "Exemplo", valores: [5, 5, 5, 5] }
     ],
     media: { id: "", valores: [] },
-    mediaIndex: null
+    mediaIndex: null,
+    objetivo: 5
 }
 
 function rootReducer(state = INITIAL_STATE, action) {
@@ -35,6 +36,8 @@ function rootReducer(state = INITIAL_STATE, action) {
             return Object.assign({}, state, { mediaIndex: action.payload })
         case constants.SET_FORMULAS:
             return Object.assign({}, state, { colunas: action.payload })
+        case constants.SET_OBJETIVO:
+            return Object.assign({}, state, { objetivo: action.payload })
         default:
             return state;
     }

@@ -27,3 +27,7 @@ export function setMediaIndex(payload) {
 export function setFormulas(payload) {
     return { type: constants.SET_FORMULAS, payload }
 }
+
+export function setObjetivo(payload) {
+    return { type: constants.SET_OBJETIVO, payload }
+}
