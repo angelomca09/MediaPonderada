@@ -3,6 +3,7 @@ import { Container, AppBar, Toolbar, Typography } from '@material-ui/core'
 import MainScreen from "./screens/Main";
 import useStyles from "./styles"
 import ExportButton from './components/ExportButton';
+import ImportButton from './components/ImportButton';
 
 export default props => {
 
@@ -15,6 +16,7 @@ export default props => {
           <Typography style={{ fontWeight: "bold" }}>Cálculo da Média</Typography>
           <div>
             <ExportButton />
+            <ImportButton />
           </div>
         </Toolbar>
       </AppBar>
