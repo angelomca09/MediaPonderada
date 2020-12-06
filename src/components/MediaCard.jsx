@@ -10,7 +10,7 @@ const MediaCard = (props) => {
 
     const colunas = props.colunas
     const linhas = props.linhas
-    const media = props.media
+    const objetivo = props.objetivo
 
     const zerarValoresDaMedia = () => {
         return { id: "", valores: colunas.map(() => 0) }
@@ -25,6 +25,18 @@ const MediaCard = (props) => {
         props.setMedia(zerarValoresDaMedia())
         props.setMediaIndex(null)
         props.deleteMedia(index)
+    }
+
+    const total = (valores) => {
+        return valores.reduce((soma, valor, index) => (colunas[index] ? (soma + (valor * colunas[index].peso)) : soma), 0).toFixed(2)
+    }
+
+    const melhorValor = (total, valor, peso) => {
+        return Math.abs((objetivo - (total - (valor * peso))) / peso)
+    }
+
+    const formula = (colunas, valores) => {
+        return colunas.map((coluna, index) => `${coluna.peso} . ${valores[index]} `).join("+ ").concat(` = ${total(valores)}`)
     }
 
     return (
@@ -44,8 +56,18 @@ const MediaCard = (props) => {
                         {linhas.map((linha, index) => (
                             <tr key={index}>
                                 <td>{linha.id}</td>
-                                {linha.valores.map((valor, index) => (colunas[index] ? <td>{valor}</td> : null))}
-                                <td>{linha.valores.reduce((soma, valor, index) => (colunas[index] ? (soma + (valor * colunas[index].peso)) : soma), 0).toFixed(2)}</td>
+                                {linha.valores.map((valor, index) =>
+                                    (colunas[index]
+                                        ? <td title={`${colunas[index].tag} para objetivo -> ${melhorValor(total(linha.valores), valor, colunas[index].peso)}`}  >
+                                            {valor}
+                                        </td>
+                                        : null
+                                    )
+                                )}
+
+                                <td title={`${formula(colunas, linha.valores)}`} style={{ color: (total(linha.valores) >= objetivo) ? "green" : "red" }} >
+                                    {total(linha.valores)}
+                                </td>
                                 <td><button style={{ width: "100%" }} onClick={() => editarClick(index, linha)}>E</button></td>
                                 <td><button style={{ width: "100%" }} onClick={() => deletarClick(index)}>R</button></td>
                             </tr>
@@ -60,8 +82,7 @@ const MediaCard = (props) => {
 const mapStateToProps = state => ({
     colunas: state.colunas,
     linhas: state.linhas,
-    mediaIndex: state.mediaIndex,
-    media: state.media
+    objetivo: state.objetivo
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -20,6 +20,7 @@ const MediaCard = (props) => {
 
     useEffect(() => {
         props.setMedia(preencheValoresDaMedia())
+        // eslint-disable-next-line
     }, [])
 
     const alteraId = event => props.setMedia({ id: event.target.value, valores: media.valores })
@@ -55,13 +56,13 @@ const MediaCard = (props) => {
                             {colunas.map((coluna, index) =>
                                 <tr key={index} title={`Peso: ${coluna.peso}`}>
                                     <td>{coluna.tag}</td>
-                                    <td><Input value={props.media.valores[index]}
+                                    <td><Input value={props.media.valores[index]} type={"number"}
                                         onChange={event => alteraValores(event, index)} />
                                     </td>
                                 </tr>)}
                             <tr>
                                 <td></td>
-                                <td><button>{props.mediaIndex ? "Editar Média" : "Adicionar Média"}</button></td>
+                                <td><button>{(props.mediaIndex !== null )? "Editar Média" : "Adicionar Média"}</button></td>
                             </tr>
                         </tbody>
                     </table>

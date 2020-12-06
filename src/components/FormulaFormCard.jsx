@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Paper, Grid, Input } from '@material-ui/core';
 import useStyles from '../styles';
 import { connect } from "react-redux";
-import { setFormulas, setMedias } from "../redux/actions"
+import { setFormulas, setMedias, setObjetivo } from "../redux/actions"
 
 const FormulaCard = (props) => {
 
@@ -47,6 +47,10 @@ const FormulaCard = (props) => {
                 <table className="formTable">
                     <thead><tr><th></th><th >Fórmula</th><th></th><th></th><th></th></tr></thead>
                     <tbody>
+                        <tr>
+                            <td>Objetivo</td>
+                            <td><Input value={props.objetivo} onChange={(event) => props.setObjetivo(+event.target.value)} /></td>
+                        </tr>
                         {colunas.map((coluna, index) =>
                             <tr key={index}>
                                 <td>Tag</td>
@@ -68,12 +72,14 @@ const FormulaCard = (props) => {
 
 const mapStateToProps = state => ({
     colunas: state.colunas,
-    medias: state.linhas
+    medias: state.linhas,
+    objetivo: state.objetivo
 })
 
 const mapDispatchToProps = dispatch => ({
     setFormulas: formulas => dispatch(setFormulas(formulas)),
-    setMedias: medias => dispatch(setMedias(medias))
+    setMedias: medias => dispatch(setMedias(medias)),
+    setObjetivo: objetivo => dispatch(setObjetivo(objetivo)) 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormulaCard)
