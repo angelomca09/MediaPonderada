@@ -1,16 +1,16 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   appBarSpace: theme.mixins.toolbar,
   container: {
     marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(3),
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column'
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
   },
   fixedHeightPaper: {
     height: "85vh",
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
   },
   timePaper: {
     height: "15vh",
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
   },
   formPaper: {
     height: "85vh",
@@ -34,11 +34,11 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
   },
   tempo: {
     paddingTop: theme.spacing(3),
-    marginBottom: theme.spacing(5)
+    marginBottom: theme.spacing(5),
   },
   addButton: {
     marginTop: theme.spacing(3),
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     color: "white",
     width: "50px",
-    height: "50px"
+    height: "50px",
   },
   cancelButton: {
     marginTop: theme.spacing(3),
@@ -62,15 +62,22 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     color: "white",
     width: "50px",
-    height: "50px"
+    height: "50px",
   },
   textFields: {
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
-  header:{
-    background: "linear-gradient(to bottom, #6377e8 0%, #3f51b5 66%, #182c9c 100%)",
-    color:"whitesmoke"
-  }
-}))
+  header: {
+    background:
+      "linear-gradient(to bottom, #6377e8 0%, #3f51b5 66%, #182c9c 100%)",
+    color: "whitesmoke",
+  },
+  toolbar:{
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  exportButton: {
+  },
+}));
 
 export default useStyles;

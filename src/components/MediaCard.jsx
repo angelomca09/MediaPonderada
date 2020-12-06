@@ -46,7 +46,7 @@ const MediaCard = (props) => {
                     <thead>
                         <tr>
                             <th>Descrição</th>
-                            {colunas.map(coluna => <th title={`Peso: ${coluna.peso}`}>{coluna.tag}</th>)}
+                            {colunas.map((coluna, index) => <th key={index} title={`Peso: ${coluna.peso}`}>{coluna.tag}</th>)}
                             <th>Total</th>
                             <th>Editar</th>
                             <th>Deletar</th>
@@ -56,9 +56,9 @@ const MediaCard = (props) => {
                         {linhas.map((linha, index) => (
                             <tr key={index}>
                                 <td>{linha.id}</td>
-                                {linha.valores.map((valor, index) =>
-                                    (colunas[index]
-                                        ? <td title={`${colunas[index].tag} para objetivo -> ${melhorValor(total(linha.valores), valor, colunas[index].peso)}`}  >
+                                {linha.valores.map((valor, valorIndex) =>
+                                    (colunas[valorIndex]
+                                        ? <td key={valorIndex} title={`${colunas[valorIndex].tag} para objetivo -> ${melhorValor(total(linha.valores), valor, colunas[valorIndex].peso)}`}  >
                                             {valor}
                                         </td>
                                         : null
