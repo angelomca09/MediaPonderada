@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Paper, Grid, Input } from '@material-ui/core';
 import useStyles from '../styles';
 import { connect } from "react-redux";
-import { addMedia, editMedia, setMedia, setMediaIndex } from "../redux/actions"
+import { addMedia, editMedia, setMedia, setMediaIndex, save } from "../redux/actions"
 
 const MediaCard = (props) => {
 
@@ -38,6 +38,7 @@ const MediaCard = (props) => {
         else props.addMedia(mediaPreenchida)
         props.setMedia({ id: "", valores: colunas.map(() => 0) })
         props.setMediaIndex(null)
+        props.save()
     }
 
     return (
@@ -82,7 +83,8 @@ const mapDispatchToProps = dispatch => ({
     addMedia: media => dispatch(addMedia(media)),
     editMedia: (id, media) => dispatch(editMedia({ id, media })),
     setMedia: media => dispatch(setMedia(media)),
-    setMediaIndex: index => dispatch(setMediaIndex(index))
+    setMediaIndex: index => dispatch(setMediaIndex(index)),
+    save: () => dispatch(save())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCard)

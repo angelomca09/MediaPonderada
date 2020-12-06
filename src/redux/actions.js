@@ -31,3 +31,7 @@ export function setFormulas(payload) {
 export function setObjetivo(payload) {
     return { type: constants.SET_OBJETIVO, payload }
 }
+
+export function save(payload) {
+    return { type: constants.SAVE, payload }
+}

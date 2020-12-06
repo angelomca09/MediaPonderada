@@ -2,7 +2,7 @@ import React from 'react';
 import { Paper, Grid } from '@material-ui/core';
 import useStyles from '../styles';
 import { connect } from "react-redux";
-import { deleteMedia, editMedia, setMedia, setMediaIndex } from "../redux/actions"
+import { deleteMedia, editMedia, setMedia, setMediaIndex, save } from "../redux/actions"
 
 const MediaCard = (props) => {
 
@@ -25,6 +25,7 @@ const MediaCard = (props) => {
         props.setMedia(zerarValoresDaMedia())
         props.setMediaIndex(null)
         props.deleteMedia(index)
+        props.save()
     }
 
     const total = (valores) => {
@@ -89,6 +90,7 @@ const mapDispatchToProps = dispatch => ({
     deleteMedia: id => dispatch(deleteMedia(id)),
     editMedia: (id, media) => dispatch(editMedia({ id, media })),
     setMedia: media => dispatch(setMedia(media)),
-    setMediaIndex: index => dispatch(setMediaIndex(index))
+    setMediaIndex: index => dispatch(setMediaIndex(index)),
+    save: () => dispatch(save())
 })
 export default connect(mapStateToProps, mapDispatchToProps)(MediaCard)

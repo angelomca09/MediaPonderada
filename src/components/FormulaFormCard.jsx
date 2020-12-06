@@ -2,7 +2,7 @@ import React from 'react';
 import { Paper, Grid, Input } from '@material-ui/core';
 import useStyles from '../styles';
 import { connect } from "react-redux";
-import { setFormulas, setMedias, setObjetivo } from "../redux/actions"
+import { setFormulas, setMedias, setObjetivo, save } from "../redux/actions"
 
 const FormulaCard = (props) => {
 
@@ -15,6 +15,7 @@ const FormulaCard = (props) => {
         var valoresCopia = [...colunas];
         valoresCopia[index][campo] = campo === "peso" ? +event.target.value : event.target.value;
         props.setFormulas(valoresCopia)
+        props.save()
     }
 
     const corrigeMedias = (index = null) => {
@@ -31,13 +32,15 @@ const FormulaCard = (props) => {
         var valoresCopia = [...colunas];
         props.setFormulas(valoresCopia.concat({ tag: "TAG", peso: 0 }))
         corrigeMedias()
+        props.save()
     }
-
+    
     const remove = (index) => {
         corrigeMedias(index)
         var colunasCopia = [...colunas];
         colunasCopia.splice(index, 1)
         props.setFormulas(colunasCopia)
+        props.save()
     }
 
     return (
@@ -78,7 +81,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setFormulas: formulas => dispatch(setFormulas(formulas)),
     setMedias: medias => dispatch(setMedias(medias)),
-    setObjetivo: objetivo => dispatch(setObjetivo(objetivo)) 
+    setObjetivo: objetivo => dispatch(setObjetivo(objetivo)),
+    save: () => dispatch(save())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormulaCard)
