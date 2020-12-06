@@ -24,7 +24,6 @@ const FormulaCard = (props) => {
             mediasCopia.forEach(media => media.valores.splice(index, 1))
         else
             mediasCopia.forEach(media => media.valores.splice(start, 0, 0))
-        console.log(mediasCopia)
         props.setMedias(mediasCopia)
     }
 
