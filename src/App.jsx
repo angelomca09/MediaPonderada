@@ -11,7 +11,7 @@ export default props => {
     <div style={{ display: "flex" }}>
       <AppBar position="absolute" className={classes.header}>
         <Toolbar>
-          <Typography style={{ fontWeight: "bold" }}>Média Ponderada</Typography>
+          <Typography style={{ fontWeight: "bold" }}>Cálculo da Média</Typography>
         </Toolbar>
       </AppBar>
       <main style={{ flexGrow: 1, height: '100vh', overflow: 'auto', background:"#eeeeee" }}>
