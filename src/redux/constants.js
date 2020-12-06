@@ -8,5 +8,6 @@ export default {
     SET_FORMULAS: "SET_FORMULAS",
     SET_OBJETIVO: "SET_OBJETIVO",
     SAVE: "SAVE",
+    READ: "READ"
 
 }

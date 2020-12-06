@@ -35,3 +35,7 @@ export function setObjetivo(payload) {
 export function save(payload) {
     return { type: constants.SAVE, payload }
 }
+
+export function read(payload) {
+    return { type: constants.READ, payload }
+}

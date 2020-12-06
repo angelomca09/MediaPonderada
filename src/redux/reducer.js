@@ -39,10 +39,19 @@ function rootReducer(state = INITIAL_STATE, action) {
     case constants.SET_OBJETIVO:
       return Object.assign({}, state, { objetivo: action.payload });
     case constants.SAVE:
-      const { colunas, linhas, objetivo } = state;
-      const data = { colunas, linhas, objetivo };
-      localStorage.setItem("data", JSON.stringify(data))
-      // eslint-disable-next-line
+      let { colunas, linhas, objetivo } = state;
+      const dataToSave = { colunas, linhas, objetivo };
+      localStorage.setItem("data", JSON.stringify(dataToSave));
+      return state;
+    case constants.READ:
+      const dataToRead = JSON.parse(localStorage.getItem("data"));
+      if (dataToRead)
+        return Object.assign({}, state, {
+          colunas: dataToRead.colunas,
+          linhas: dataToRead.linhas,
+          objetivo: dataToRead.objetivo,
+        });
+      else return state;
     default:
       return state;
   }
