@@ -33,7 +33,10 @@ const MediaCard = (props) => {
     }
 
     const melhorValor = (total, valor, peso) => {
-        return Math.abs((objetivo - (total - (valor * peso))) / peso)
+        const mediaSemValor = total - (valor * peso)
+        if (mediaSemValor >= objetivo)
+            return 0
+        return (objetivo - mediaSemValor) / peso
     }
 
     const formula = (colunas, valores) => {
